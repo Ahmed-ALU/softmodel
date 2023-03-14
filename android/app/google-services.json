@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "989360064328",
+    "project_id": "softmodel",
+    "storage_bucket": "softmodel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989360064328:android:89cd4ba26bb9c9350d957d",
+        "android_client_info": {
+          "package_name": "rw.ahmedshazly.softmodel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989360064328-tne9nej6as7jinaplnbio7bpgph1mqru.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwt1AxE8stOxW3i5WLGCbxAstM27lgmnI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989360064328-tne9nej6as7jinaplnbio7bpgph1mqru.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
