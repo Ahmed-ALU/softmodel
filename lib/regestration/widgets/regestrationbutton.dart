@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-import '../screens/signinscreen.dart';
+import '../screens/loginscreen.dart';
 import '../screens/signupscreen.dart';
 
 class RegestrationButton extends StatelessWidget {
@@ -13,7 +13,8 @@ class RegestrationButton extends StatelessWidget {
   final Color stroke;
   final String text;
   final Color textcolor;
-  final Widget page;
+  // final Widget page;
+  final Function func;
   // final NavigatorState navigator;
 
   const RegestrationButton({
@@ -25,7 +26,8 @@ class RegestrationButton extends StatelessWidget {
     required this.stroke,
     required this.text,
     required this.textcolor,
-    required this.page,
+    // required this.page,
+    required this.func,
     // required this.navigator
   });
 
@@ -44,13 +46,7 @@ class RegestrationButton extends StatelessWidget {
       ),
       child: MaterialButton(
         onPressed: () {
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => page),
-            (route) => false,
-          );
-
-          ;
+          func();
         },
         child: Text(
           text,

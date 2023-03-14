@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:softmodel/regestration/screens/signinscreen.dart';
+import 'package:softmodel/regestration/screens/loginscreen.dart';
 import 'package:softmodel/regestration/screens/signupscreen.dart';
 import 'package:softmodel/regestration/widgets/regestrationbutton.dart';
 
@@ -59,26 +59,36 @@ class RegestrationBody extends StatelessWidget {
               ),
               const Spacer(),
               RegestrationButton(
-                height: MediaQuery.of(context).size.height * .07,
-                width: MediaQuery.of(context).size.width * .8,
-                radius: 15,
-                bg: const Color(0xff072f53),
-                stroke: const Color(0xffffffff),
-                text: "LogIn",
-                textcolor: const Color(0xffffffff),
-                page: LoginScreen(),
-              ),
+                  height: MediaQuery.of(context).size.height * .07,
+                  width: MediaQuery.of(context).size.width * .8,
+                  radius: 15,
+                  bg: const Color(0xff072f53),
+                  stroke: const Color(0xffffffff),
+                  text: "LogIn",
+                  textcolor: const Color(0xffffffff),
+                  func: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      (route) => false,
+                    );
+                  }),
               const SizedBox(height: 16),
               RegestrationButton(
-                height: MediaQuery.of(context).size.height * .07,
-                width: MediaQuery.of(context).size.width * .8,
-                radius: 15,
-                bg: const Color(0xffffffff),
-                stroke: const Color(0xff072f53),
-                text: "SignUp",
-                textcolor: const Color(0xff072f53),
-                page: SignupScreen(),
-              ),
+                  height: MediaQuery.of(context).size.height * .07,
+                  width: MediaQuery.of(context).size.width * .8,
+                  radius: 15,
+                  bg: const Color(0xffffffff),
+                  stroke: const Color(0xff072f53),
+                  text: "SignUp",
+                  textcolor: const Color(0xff072f53),
+                  func: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignupScreen()),
+                      (route) => false,
+                    );
+                  }),
               const Spacer(),
             ]),
           ),

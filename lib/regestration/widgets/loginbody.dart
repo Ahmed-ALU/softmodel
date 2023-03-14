@@ -1,23 +1,22 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:softmodel/regestration/screens/loginscreen.dart';
+import 'package:softmodel/regestration/screens/signupscreen.dart';
 import 'package:softmodel/regestration/widgets/regestrationbutton.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:softmodel/regestration/widgets/textfield.dart';
 
-import '../../firebase_options.dart';
-import '../screens/signupscreen.dart';
+import '../../home/screens/homescreen.dart';
 
-class SignupBody extends StatefulWidget {
-  const SignupBody({super.key});
+class LoginBody extends StatefulWidget {
+  const LoginBody({super.key});
 
   @override
-  State<SignupBody> createState() => _SignupBodyState();
+  State<LoginBody> createState() => _LoginBodyState();
 }
 
-class _SignupBodyState extends State<SignupBody> {
+class _LoginBodyState extends State<LoginBody> {
   late final TextEditingController _email;
   late final TextEditingController _password;
 
@@ -52,7 +51,7 @@ class _SignupBodyState extends State<SignupBody> {
         ),
         const Spacer(),
         const Text(
-          "SignUp",
+          "LogIn",
           style: TextStyle(
             color: Color(0xff072f53),
             fontSize: 25,
@@ -64,7 +63,7 @@ class _SignupBodyState extends State<SignupBody> {
         ),
         Container(
           alignment: Alignment.center,
-          height: MediaQuery.of(context).size.height * .60,
+          height: MediaQuery.of(context).size.height * .50,
           width: MediaQuery.of(context).size.width * .90,
           decoration: const BoxDecoration(
             boxShadow: [
@@ -80,17 +79,6 @@ class _SignupBodyState extends State<SignupBody> {
           child: Column(
             children: [
               const Spacer(),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: TextFormField(
-                  keyboardType: TextInputType.name,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Full Name',
-                  ),
-                ),
-              ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -125,27 +113,29 @@ class _SignupBodyState extends State<SignupBody> {
                   radius: 15,
                   bg: const Color(0xff072f53),
                   stroke: const Color(0xffffffff),
-                  text: "SignUp",
+                  text: "LogIn",
                   textcolor: const Color(0xffffffff),
                   func: () async {
                     final email = _email.text;
                     final password = _password.text;
                     try {
                       final credential = await FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
-                        email: email,
-                        password: password,
+                          .signInWithEmailAndPassword(
+                              email: email, password: password);
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        (route) => false,
                       );
                     } on FirebaseAuthException catch (e) {
-                      if (e.code == 'weak-password') {
-                        print('The password provided is too weak.');
-                      } else if (e.code == 'email-already-in-use') {
-                        print('The account already exists for that email.');
+                      if (e.code == 'user-not-found') {
+                        print('No user found for that email.');
+                      } else if (e.code == 'wrong-password') {
+                        print('Wrong password provided for that user.');
                       }
-                    } catch (e) {
-                      print(e);
                     }
-                  }),
+                  }), // TODO: Log in implement
+
               const SizedBox(height: 16),
               RegestrationButton(
                   height: MediaQuery.of(context).size.height * .07,
@@ -153,12 +143,12 @@ class _SignupBodyState extends State<SignupBody> {
                   radius: 15,
                   bg: const Color(0xffffffff),
                   stroke: const Color(0xff072f53),
-                  text: "LogIn",
+                  text: "SignUp",
                   textcolor: const Color(0xff072f53),
                   func: () {
                     Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      MaterialPageRoute(builder: (context) => SignupScreen()),
                       (route) => false,
                     );
                   }),

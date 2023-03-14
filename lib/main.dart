@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'splashscreen/screens/animatedsplashscreen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'Flutter Demo',
